@@ -1,7 +1,7 @@
 # Hive-Practice
-```
-********************************Section 1***********************************
 
+## Section 1
+```
 Sample data to be loaded in Hive Tables
 salesman.csv
 5001,James Hoog,New York,0.15
@@ -116,8 +116,8 @@ INNER JOIN customer c
 ON s.salesman_id = c.salesman_id
 WHERE s.city != c.city AND s.commission > 0.12;
 ```
+## Section 2
 ```
-********************************Section 2***********************************
 
 1. Please complete the below create table commands on complex data and create the table in hive. 
 
