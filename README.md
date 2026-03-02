@@ -69,11 +69,8 @@ salesman
 customer
 orders
 
-Create above tables with the help of given data and metadata. 
+Answer: Use nano command to create files in home directory. Then create database in Hive, create managed tables in Hive, and load data local impath 'home directory for files' into table.
 
-
-
-**************************Write SQL For Followings*************************
 
 ●	Write a SQL statement to prepare a list with salesman name, customer name and their cities for the salesmen and customer who belongs to the same city.
 
