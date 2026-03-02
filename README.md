@@ -38,7 +38,6 @@ orders.csv
 70013,3045.6,2012-04-25,3002,5001
 
 
-
 Hive Tables Metadata
 salesman
 salesman_id int,
@@ -46,14 +45,12 @@ name    string,
 city       string, 
 commission double
 
-
 customer
 customer_id  int,
 cust_name   string,
 city    string,
 grade  int,
- salesman_id int
-
+salesman_id int
 
 orders
 ord_no  int,
@@ -62,14 +59,14 @@ ord_date  date,
 customer_id int,
 salesman_id int
 
-
-
 Create a database named hive_test and create three tables
 salesman
 customer
 orders
 
-Answer: Use nano command to create files in home directory. Then create database in Hive, create managed tables in Hive, and load data local impath 'home directory for files' into table.
+Answer:
+Use nano command to create files in home directory.
+Then create database in Hive, create managed tables in Hive, and load data local impath 'home directory for files' into table.
 
 
 ●	Write a SQL statement to prepare a list with salesman name, customer name and their cities for the salesmen and customer who belongs to the same city.
@@ -120,16 +117,14 @@ WHERE s.city != c.city AND s.commission > 0.12;
 
 Replace ? with appropriate delimiter according to the given data in below create table sql
 
-
 salesdetail_complex (Product_ID INT,productdetails map<String,String>,Order_Priority VARCHAR(4),merchantType CHAR(4),Sale_Amount DOUBLE,Order_Quantity BIGINT,Discount FLOAT,Salaryhike TINYINT,companyprofit SMALLINT,
 financeDeficit DECIMAL(8,2),indian BOOLEAN,saledate array<date>,saleyear array<int>,selleramountfile array<DOUBLE>,orderQuantityfile array<BIGINT>,costlist map<int,int>,strutureType struct<city:string,state:string,pin:bigint>,systemdatetime array<String>) ROW FORMAT DELIMITED FIELDS TERMINATED BY '?' collection items terminated by '?' map keys terminated by '?';
 
-
+Answer:
 ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' collection items terminated by '$' map keys terminated by '#';
 
 
 And load below sample data in above table
-
 
 1,Cam1eras#Cameras$Cameras#Cameras,Medium,Seller,750000,5000000,1500.24,100,1000,1500.659744,TRUE,2012-12-21$2013-12-26,2012$1998,750700.00$850000.01,500000065$500056458,401#901$1200#5410,ap$mp$500001,2019-12-21$2020-12-26 12:00
 2,Cam`eras#Nikon$DLR#SmileDetector,Not Specified,Dealer,750001,5000561,1501.24,101,1001,1501.659744,FALSE,2012-12-22$2012-12-27,2012$1999,750001.00$750000.02,500056187$500056458,,ap$mp$500002,2019-12-21$2020-12-26 12:01
@@ -140,6 +135,7 @@ And load below sample data in above table
 
 2. Write a  sql to get the only 2 records from salesdetail_complex
 
+Answer:
 SELECT * FROM salesdetail_complex
 LIMIT 2;
 	
@@ -147,7 +143,7 @@ LIMIT 2;
 Table metadata for non partitioned table:
 
  Table columns
-                dateid smallint ,
+	dateid smallint ,
 	caldate date ,
 	day string ,
 	week smallint ,
@@ -156,9 +152,8 @@ Table metadata for non partitioned table:
 	year smallint ,
 	holiday boolean
 
-
+Answer:
 Create table non_part(dateid smallint, caldate date, day string, week smallint, month string, qtr string, year smallint, holiday Boolean) ROW FORMAT DELIMITED FIELDS TERMINATED BY ‘,’ STORED AS TEXTFILE;
-
 
 Sample data from above table.
 
@@ -189,19 +184,19 @@ Sample data from above table.
 1851|2008-01-25|SA|5|JAN|1|2008|FALSE
 1852|2008-01-26|SU|5|JAN|1|2008|FALSE
 
+Answer:
+nano non_part.csv
+ctrl + s
+ctrl + x
 
-	nano non_part.csv
-	ctrl + s
-	ctrl + x
-
-	load data local inpath ‘/home/takeo/non_part.csv’ into table non_part;
+load data local inpath ‘/home/takeo/non_part.csv’ into table non_part;
 
 4. Now create a partitioned table on column caldate named as date_part from non partitioned table created above
 
 Partitioned table metadata
 
 Table Columns
-               dateid smallint,
+	dateid smallint,
 	day string ,
 	week smallint ,
 	month string ,
@@ -209,11 +204,10 @@ Table Columns
 	year smallint ,
 	holiday boolean
 
-
 Partition column
-
 caldate
 
+Answer:
 CREATE table date_part(dateid smallint, day string, week smallint, month string, qtr string, year smallint, holiday Boolean) partitioned by (caldate date) ROW FORMAT DELIMITED FIELDS TERMINATED BY ‘|' STORED AS TEXTFILE;
 
 Set hive.exec.dynamic.partition.mode = nonstrict;
@@ -223,7 +217,7 @@ Insert overwrite table date_part partition (caldate) select dateid, day, week, m
 5. Now create a partitioned and bucketed table on above table 
 
 Table Columns
-               dateid smallint,	
+	dateid smallint,	
 	week smallint ,
 	month string ,
 	qtr string ,
@@ -232,13 +226,12 @@ Table Columns
 
 
 Partition column
-
 caldate
 
 Bucket column
-
 dateid
 
+Answer:
 CREATE table date_part (dateid smallint, week smallint, month string, qtr string, year small int, holiday Boolean) PARTITIONED BY (caldate date) CLUSTERED BY (dateid) INTO 4 BUCKETS  ROW FORMAT DELIMITED FIELDS TERMINATED BY ‘|' STORED AS TEXTFILE;
 ```
 
