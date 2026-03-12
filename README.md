@@ -112,7 +112,6 @@ WHERE s.city != c.city AND s.commission > 0.12;
 ```
 ## Section 2
 ```
-
 1. Please complete the below create table commands on complex data and create the table in hive. 
 
 Replace ? with appropriate delimiter according to the given data in below create table sql
@@ -247,6 +246,7 @@ Given the large scale of the dataset (millions of records), querying the data fo
 - Optimize queries to retrieve data based on call date and region for reporting purposes.
 - Speed up queries to identify heavy data users.
 - Use partitioning and bucketing to manage the dataset efficiently in Hive, improving query performance and storage optimization.
+
 Sample Data
 Call Data Table (call_data)
 Columns:
@@ -263,6 +263,7 @@ Sample Data:
 4, 104, 12.4, West, 2023-08-04
 5, 105, 25.0, North, 2023-08-05
 Data Usage Table (data_usage)
+
 Columns:
 - usage_id: INT
 - customer_id: INT
@@ -277,6 +278,7 @@ Sample Data:
 4, 104, 5.5, West, 2023-08-04
 5, 105, 10.0, North, 2023-08-05
 SMS Data Table (sms_data)
+
 Columns:
 - sms_id: INT
 - customer_id: INT
